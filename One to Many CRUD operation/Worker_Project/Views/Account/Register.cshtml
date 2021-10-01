@@ -1,0 +1,64 @@
+﻿@model Worker_Project.Models.ViewModel.AuthModel
+@{
+    ViewBag.Title = "Register";
+}
+<div class="login">
+    <div class="row mb-1">
+        <p class="col-1 offset-2" style="margin-left:130px;">
+            <i class="px-3 logo bi bi-person-fill"></i>
+        </p>
+    </div>
+    <div class="row mb-1 ms-3">
+        <div class="col-12">
+            Already have an account? <a href="@Url.Action("Login","Account")" class="btn btn-link">Please Login.</a>
+        </div>
+    </div>
+    <div class="row mb-3 ms-3">
+        <h2 class="col-12">Register Form</h2>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-12 ms-3 text-danger">
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+
+        <div class="row mb-1 ms-3">
+            <div class="col-11">
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Enter a UserName" })
+            </div>
+        </div>
+        <div class="row ms-3">
+            @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="row mb-1 ms-3">
+            <div class="col-11">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", @placeholder = "Enter Currect Password" })
+            </div>
+        </div>
+        <div class="row ms-3">
+            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="row mb-1 ms-3">
+
+            <div class="col-4">
+                <button type="submit" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-unlock"></i> Login
+                </button>
+            </div>
+        </div>
+        
+    }
+    @section scripts{
+        <script src="~/Scripts/jquery-3.6.0.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    }
+    @section styles{
+        <link href="~/Content/Login.css" rel="stylesheet" />
+    }
+
+
+
+</div>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <style>
+        .main {
+            min-height: calc(100vh - 140px);
+        }
+
+        footer {
+            min-height: 150px;
+            background-color: rgb(104 100 100);
+        }
+
+        .fsite {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between
+        }
+
+        .part {
+            margin: 0 5px;
+            padding: 10px;
+            width: 33%;
+            min-height: 150px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: white;
+        }
+    </style>
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="navbar navbar-light bg-light navbar-expand-md shadow fixed-top">
+        <div class="container-fluid">
+            <span class="navbar-brand">Evidence</span>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Worker Type", "Index", "WorkerTypes", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Workers", "Index", "Workers", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" , style = "color:rgb(129 100 185)" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid main">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="fsite">
+            <div class="part">
+                <u>Follow Us</u>
+                <p><i class=""></i></p>
+            </div>
+            <div class="part">
+                <u>About Us</u>
+            </div>
+            <div class="part">
+                <u>Contact Us</u>
+            </div>
+        </div>
+    </footer>
+
+    @RenderSection("scripts",false)
+</body>
+</html>

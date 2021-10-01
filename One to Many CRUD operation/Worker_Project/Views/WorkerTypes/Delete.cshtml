@@ -1,0 +1,38 @@
+﻿@model Worker_Project.Models.WorkerType
+@{
+    ViewBag.Title = "Delete WorkerType";
+}
+
+<div class="row my-3">
+    <div class="col-12">
+        <a title="Back to List" href="@Url.Action("Index","WorkerTypes")" class="btn btn-link"></a>
+    </div>
+</div>
+<div class="row my-3">
+    <div class="col-10 offset-2">
+        <h2>Delete Worker Type</h2>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.TypeId)
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.TypeName, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.TypeName, new { @class = "form-control" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.TypeName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-2">
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
+        </div>
+    </div>
+}
+
+
+
+
+

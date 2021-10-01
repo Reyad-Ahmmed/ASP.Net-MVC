@@ -1,0 +1,58 @@
+﻿@model Worker_Project.Models.Worker
+@{
+    ViewBag.Title = "Delete Worker";
+}
+
+<div class="row my-3">
+    <div class="col-10 offset-2">
+        <a href="@Url.Action("Index","Workers")" class="btn btn-link">Back to list</a>
+    </div>
+</div>
+
+<div class="row my-3">
+    <div class="col-10 offset-2">
+        <h2>Delete Worker</h2>
+    </div>
+</div>
+@using (Html.BeginForm("Delete", "Workers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.WorkerId)
+
+    <div class="row mb-1">
+        <div class="col-4 offset-2">
+            <img class="rounded" src="~/UploadImages/@Html.DisplayFor(x=>x.Picture)" alt="Alternate Text" width="70" height="70" />
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.WorkerName, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.WorkerName, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.Salary, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.Salary, "{0:.00}", new { @class = "form-control" })
+        </div>
+
+    </div>
+
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.WorkerType.TypeName, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.WorkerType.TypeName, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-10 offset-2">
+            <button type="submit" class="btn btn-warning">Delete</button>
+        </div>
+    </div>
+}
+
+
+
+
+

@@ -1,0 +1,51 @@
+﻿@model Worker_Project.Models.WorkerType
+@{
+    ViewBag.Title = "Create WorkerType";
+}
+
+
+<div class="row">
+    <div class="col-10 offset-2 mb-4">
+        <h2>Create New Worker Type</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" id="popup">
+
+    </div>
+</div>
+@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "popup", OnSuccess = "success" }))
+{
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.TypeName, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.TypeName, new { @class = "form-control" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.TypeName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-1">
+
+        <div class="col-4 offset-2">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+    <div class="row mb-1">
+
+        <div class="col-4 offset-2">
+            <a href="@Url.Action("Index","WorkerTypes")" class="btn btn-link">Back</a>
+        </div>
+    </div>
+}
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function success() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}

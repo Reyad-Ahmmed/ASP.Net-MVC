@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkerDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="WorkerId" />
+    </Key>
+    <Property Name="WorkerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="WorkerType" Relationship="Self.FK__Workers__TypeId__25869641" FromRole="Workers" ToRole="WorkerTypes" />
+  </EntityType>
+  <EntityType Name="WorkerType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK__Workers__TypeId__25869641" FromRole="WorkerTypes" ToRole="Workers" />
+  </EntityType>
+  <Association Name="FK__Workers__TypeId__25869641">
+    <End Role="WorkerTypes" Type="Self.WorkerType" Multiplicity="1" />
+    <End Role="Workers" Type="Self.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkerTypes">
+        <PropertyRef Name="TypeId" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WorkerDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Workers" EntityType="Self.Worker" />
+    <EntitySet Name="WorkerTypes" EntityType="Self.WorkerType" />
+    <AssociationSet Name="FK__Workers__TypeId__25869641" Association="Self.FK__Workers__TypeId__25869641">
+      <End Role="WorkerTypes" EntitySet="WorkerTypes" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

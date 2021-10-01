@@ -1,0 +1,78 @@
+﻿@model Worker_Project.Models.ViewModel.WorkerViewModel
+@{
+    ViewBag.Title = "Create Worker";
+}
+
+<div class="row my-3">
+    <div class="col-10 offset-2">
+        <a href="@Url.Action("Index","Workers")" class="btn btn-link">Back to list</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10 offset-2">
+        <h2>Create New Worker</h2>
+    </div>
+</div>
+@using (Html.BeginForm("Create", "Workers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.WorkerName, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.WorkerName, new { @class = "form-control" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.WorkerName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.Salary, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.Salary, new { @class = "form-control" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.Salary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.TextBoxFor(x => x.Picture, new { @class = "form-control", type = "file" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-1">
+        @Html.LabelFor(x => x.TypeId, new { @class = "col-form-label col-2 text-end" })
+        <div class="col-4">
+            @Html.DropDownListFor(x => x.TypeId, new SelectList(ViewBag.TypeList, "TypeId", "TypeName"), "---Select One---", new { @class = "form-select" })
+        </div>
+        <div class="col-4">
+            @Html.ValidationMessageFor(x => x.TypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-2">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+}
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $.validator.addMethod("salary", function (value, element, params) {
+            if (value) {
+                if (Number(value) < 5000)
+                    return false;
+                else return true;
+            }
+        });
+        $.validator.unobtrusive.adapters.addBool("salary");
+    </script>
+
+}
+
+

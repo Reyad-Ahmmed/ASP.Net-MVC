@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Worker_Project.Models.Worker>
+@{
+    ViewBag.Title = "Worker Index";
+}
+
+<div class="row">
+
+    <div class="col-12">
+        <h2>Worker Type</h2>
+        <div class="d-flex justify-content-end mb-1">
+            <a href="@Url.Action("Create","Workers")" class="btn btn-sm btn-outline-primary">Create Worker</a>
+        </div>
+    </div>
+    <div class="col-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Worker Name</th>
+                    <th>Basic Salary</th>
+                    <th>Type Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var w in Model)
+                {
+                    <tr>
+                        <td><img class="rounded" src="/UploadImages/@w.Picture" alt="@w.WorkerName" width="70" height="70" /></td>
+                        <td>@w.WorkerName</td>
+                        <td>@Html.DisplayFor(x => w.Salary, "{0:0.00}")</td>
+                        <td>@w.WorkerType.TypeName</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Workers", new { id = w.WorkerId }, new { @class = "btn btn-link" })
+                            @Html.ActionLink("Delete", "Delete", "Workers", new { id = w.WorkerId }, new { @class = "btn btn-link text-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

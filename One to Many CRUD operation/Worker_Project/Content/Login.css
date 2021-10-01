@@ -1,0 +1,25 @@
+﻿
+body {
+    background: url('/Background/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login {
+    margin: 50px;
+    width: 30%;
+    background-color: rgb(226 167 167 / 0.50);
+    border-radius: 20px;
+    padding: 40px 0;
+}
+
+.logo {
+    font-size: 70px;
+    border-radius: 50%;
+    box-shadow: 10px 15px 40px;
+}
+
+.btn-outline-login {
+    color: rgb(247 161 161);
+}
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Worker_Project.Models.WorkerType>
+@{
+    ViewBag.Title = "Index WorkerType";
+}
+
+<div class="row">
+
+    <div class="col-12">
+        <h2>Worker Type</h2>
+        <div class="d-flex justify-content-end mb-1">
+            <a href="@Url.Action("Create","WorkerTypes")" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+    <div class="col-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Type ID</th>
+                    <th>Type Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var w in Model)
+                {
+                    <tr>
+                        <td>@w.TypeId</td>
+                        <td>@w.TypeName</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "WorkerTypes", new { id = w.TypeId }, new { @class = "btn btn-link" })
+                            @Html.ActionLink("Delete", "Delete", "WorkerTypes", new { id = w.TypeId }, new { @class = "btn btn-link text-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+
+
